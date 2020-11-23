@@ -4,6 +4,9 @@ import java.util.*;
 
 public class PetsMain {
     public static void main(String[] args) throws FileNotFoundException {
+
+//        Beolvasás a pets.txt-ből
+
         ArrayList<Pet> petArrayList = new ArrayList<>();
         ArrayList<PetsOwner> petsOwnerArrayList = new ArrayList<>();
         Scanner sc = new Scanner(new File("pets.txt"));
@@ -17,6 +20,8 @@ public class PetsMain {
             pet.setAge(Integer.parseInt(parts[3]));
             petArrayList.add(pet);
         }
+
+//        Beolvasás a petowner.txt-ből
         sc = new Scanner(new File("petowners.txt"));
         for (int i = 0; sc.hasNext(); i++) {
             String line = sc.nextLine();
@@ -41,6 +46,10 @@ public class PetsMain {
             petsOwnerArrayList.add(owner);
 
         }
+//        1. Állattartók kora szerinti növekvő sorrendbe rendezve kiírja az állattartókat és állataikat!
+
+
+
         TreeMap<Integer, HashMap<String, ArrayList<String>>> ageMap = new TreeMap<>();
         for (PetsOwner petsOwner : petsOwnerArrayList) {
             ageMap.putIfAbsent(petsOwner.getAge(), new HashMap<>());
@@ -50,6 +59,7 @@ public class PetsMain {
             }
             ageMap.get(petsOwner.getAge()).put(petsOwner.name, ownersAnimalsNames);
         }
+        System.out.println("1. Állattartók kora szerinti növekvő sorrendbe rendezve kiírja az állattartókat és állataikat!");
         System.out.println(ageMap);
 
 
@@ -60,11 +70,13 @@ public class PetsMain {
 //        Írj programot, ami beolvassa a fájlt és ez alapján létrehoz egy megfelelő adatstruktúrát! Hozz létre egy PetOwner és egy Pet osztályt.
 //        A két osztály kölcsönösen hivatkozzon egymásra, vagyis a PetOwner osztály tartalmazza az állattartó által tulajdonolt állatokat, a Pet
 //        osztály pedig a kis kedvenc tulajdonosát!
+
 //        Írj programot, ami
-//        1. Állattartók kora szerinti növekvő sorrendbe rendezve kiírja az állattartókat és állataikat!
-//        2. Állatok kora szerinti növekvő sorrendbe rendezve kiírja az
+
+        //        2. Állatok kora szerinti növekvő sorrendbe rendezve kiírja az
 //        állattartókat és állataikat!
-        TreeMap<Integer, HashMap<String, String>> ageOfPetsMap = new TreeMap<>();
+
+      TreeMap<Integer, HashMap<String, String>> ageOfPetsMap = new TreeMap<>();
         for (PetsOwner petsOwner : petsOwnerArrayList) {
             for (int i = 0; i < petsOwner.ownedPetNames.size(); i++) {
                 ageOfPetsMap.putIfAbsent(petsOwner.ownedPets.get(i).age, new HashMap<>());
@@ -77,6 +89,8 @@ public class PetsMain {
                 ageOfPetsMap.get(petsOwner.getOwnedPets().get(i).getAge()).put(petsOwner.name, petsOwner.getOwnedPets().get(i).getName());
             }
         }
+        System.out.println(" 2. Állatok kora szerinti növekvő sorrendbe rendezve kiírja az" +
+                "//        állattartókat és állataikat!");
         System.out.println(ageOfPetsMap);
 
 
@@ -89,6 +103,7 @@ public class PetsMain {
                 }
             }
         }
+        System.out.println( "3. Listázza azokat az állattartókat, akiknek van legalább egy náluk idősebb házikedvence!");
         System.out.println(hashSet);
     }
 //        A fájlok tartalma:
